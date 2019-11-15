@@ -66,10 +66,17 @@ void Raven_WeaponSystem::SelectWeapon()
 { 
   //if a target is present use fuzzy logic to determine the most desirable 
   //weapon.
-  if (m_pOwner->GetTargetSys()->isTargetPresent())
-  {
-    //calculate the distance to the target
-    double DistToTarget = Vec2DDistance(m_pOwner->Pos(), m_pOwner->GetTargetSys()->GetTarget()->Pos());
+	if (m_pOwner->GetTargetSys()->isTargetPresent())
+	{
+		//calculate the distance to the target
+		double DistToTarget = Vec2DDistance(m_pOwner->Pos(), m_pOwner->GetTargetSys()->GetTarget()->Pos());
+		bool Shootable = m_pOwner->GetTargetSys()->isTargetShootable();
+	/*	if (m_pOwner->GetTargetSys()->isTargetShootable()){
+			Shootable = 1.0;
+		}
+		else {
+			Shootable = 0.0;
+		}*/
 
     //for each weapon in the inventory calculate its desirability given the 
     //current situation. The most desirable weapon is selected
