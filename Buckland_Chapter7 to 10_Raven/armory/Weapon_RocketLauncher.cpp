@@ -116,41 +116,25 @@ void RocketLauncher::InitializeFuzzyModule()
   FzSet& Ammo_Okay = AmmoStatus.AddTriangularSet("Ammo_Okay", 0, 10, 30);
   FzSet& Ammo_Low = AmmoStatus.AddTriangularSet("Ammo_Low", 0, 0, 10);
 
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Loads, Low_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Loads, Mid_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Loads, Full_Life), Undesirable);
+  m_FuzzyModule.AddRule(Ammo_Loads, Undesirable);
 
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Okay, Low_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Okay, Mid_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Okay, Full_Life), Desirable);
+  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Low), VeryDesirable);
 
-  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Low, Low_Life), Desirable);
+  m_FuzzyModule.AddRule(FzAND(Ammo_Okay, Target_Shootable), Undesirable);
+  m_FuzzyModule.AddRule(FzAND(Ammo_Okay, Target_Unshootable), Desirable);
+
+  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Okay, Target_Unshootable), Desirable);
+
+  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Low, Low_Life, Target_Shootable), Desirable);
+  m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Low, Low_Life, Target_Unshootable), VeryDesirable);
   m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Low, Mid_Life), VeryDesirable);
   m_FuzzyModule.AddRule(FzAND(Target_Close, Ammo_Low, Full_Life), VeryDesirable);
 
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Loads, Low_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Loads, Mid_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Loads, Full_Life), Undesirable);
-
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Okay, Low_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Okay, Mid_Life), Desirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Okay, Full_Life), Desirable);
-
-  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Low, Low_Life), Desirable);
+  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Low, Low_Life, Target_Shootable), Desirable);
+  m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Low, Low_Life, Target_Unshootable), VeryDesirable);
   m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Low, Mid_Life), VeryDesirable);
   m_FuzzyModule.AddRule(FzAND(Target_Medium, Ammo_Low, Full_Life), VeryDesirable);
 
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Loads, Low_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Loads, Mid_Life), Undesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Loads, Full_Life), Undesirable);
-
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Okay, Low_Life), Desirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Okay, Mid_Life), Desirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Okay, Full_Life), Desirable);
-
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Low, Low_Life), VeryDesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Low, Mid_Life), VeryDesirable);
-  m_FuzzyModule.AddRule(FzAND(Target_Far, Ammo_Low, Full_Life), VeryDesirable);
 
 }
 
