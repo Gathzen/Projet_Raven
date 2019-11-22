@@ -79,6 +79,7 @@ Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
                                         script->GetDouble("Bot_ReactionTime"),
                                         script->GetDouble("Bot_AimAccuracy"),
                                         script->GetDouble("Bot_AimPersistance"));
+  m_haveEquipe = false;
 
   m_pSensoryMem = new Raven_SensoryMemory(this, script->GetDouble("Bot_MemorySpan"));
 }
@@ -356,6 +357,15 @@ void Raven_Bot::TakePossession()
     debug_con << "Player Possesses bot " << this->ID() << "";
   }
 }
+
+
+void Raven_Bot::SetEquipe(bool haveEquipe)
+{
+	m_haveEquipe = haveEquipe;
+
+	debug_con <<"ADDING BOT TO THE TEAM"<<"";
+}
+
 //------------------------------- Exorcise ------------------------------------
 //
 //  called when a human is exorcised from this bot and the AI takes control

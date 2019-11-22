@@ -97,6 +97,8 @@ void Raven_Game::Clear()
 
   m_pSelectedBot = NULL;
 
+  m_pAgentLeader = NULL;
+
 
 }
 
@@ -436,8 +438,16 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
   //change selection
   if (pBot && pBot != m_pSelectedBot)
   { 
-    if (m_pSelectedBot) m_pSelectedBot->Exorcise();
-    m_pSelectedBot = pBot;
+	  m_pSelectedBot = pBot;
+
+	  if (m_pAgentLeader != NULL) {
+		  if (m_pSelectedBot != m_pAgentLeader) {
+			  if (m_pSelectedBot->GetEquipe() == false) {
+
+			  }
+				m_pSelectedBot->SetEquipe(true);
+		  }
+	  }
 
     return;
   }
@@ -446,10 +456,14 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
   //the player's control)
   if (pBot && pBot == m_pSelectedBot)
   {
-    m_pSelectedBot->TakePossession();
-
-    //clear any current goals
-    m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+	  if (m_pAgentLeader == NULL) {
+		  m_pSelectedBot->TakePossession();
+		  m_pAgentLeader = m_pSelectedBot;
+		  if (m_pAgentLeader->GetEquipe() == false) {
+			  m_pAgentLeader->SetEquipe(true);
+		  }
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+	  }
   }
 
   //if the bot is possessed then a right click moves the bot to the cursor

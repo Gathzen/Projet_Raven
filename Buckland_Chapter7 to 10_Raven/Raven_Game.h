@@ -47,6 +47,8 @@ private:
   //the user may select a bot to control manually. This is a pointer to that
   //bot
   Raven_Bot*                       m_pSelectedBot;
+
+  Raven_Bot*				       m_pAgentLeader;
   
   //this list contains any active projectiles (slugs, rockets,
   //shotgun pellets, etc)

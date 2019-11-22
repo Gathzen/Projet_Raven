@@ -105,6 +105,10 @@ private:
   //set to true when a human player takes over control of the bot
   bool                               m_bPossessed;
 
+  //Set true si il est dans une équipe
+
+  bool								m_haveEquipe;
+
   //a vertex buffer containing the bot's geometry
   std::vector<Vector2D>              m_vecBotVB;
   //the buffer for the transformed vertices
@@ -160,6 +164,9 @@ public:
   void          SetSpawning(){m_Status = spawning;}
   void          SetDead(){m_Status = dead;}
   void          SetAlive(){m_Status = alive;}
+
+  void			SetEquipe(bool haveEquipe);
+  bool			GetEquipe() { return m_haveEquipe; }
 
   //returns a value indicating the time in seconds it will take the bot
   //to reach the given position at its current speed.
