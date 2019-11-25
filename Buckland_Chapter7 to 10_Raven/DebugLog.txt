@@ -73,13 +73,11 @@ Creating a shotgun
 Creating a shotgun
 Creating a rocket_launcher
 maps/Raven_DM1.map loaded okay
-Player Possesses bot 402
+Player Possesses bot 403
+ADDING BOT TO THE TEAM
 ADDING BOT TO THE TEAM
 BOT 402 IS STUCK!!
-ADDING BOT TO THE TEAM
-BOT 402 IS STUCK!!
-ADDING BOT TO THE TEAM
-ADDING BOT TO THE TEAM
+BOT 403 IS STUCK!!
 deleting raven bot (id = 401)
 deleting raven bot (id = 402)
 deleting raven bot (id = 403)

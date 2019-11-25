@@ -67,7 +67,7 @@ int Goal_AttackTarget::Process()
 
   return m_iStatus;
 }
-
+	
 
 
 

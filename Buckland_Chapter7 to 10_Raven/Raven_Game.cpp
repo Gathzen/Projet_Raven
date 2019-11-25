@@ -490,9 +490,14 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
 //-----------------------------------------------------------------------------
 void Raven_Game::ClickLeftMouseButton(POINTS p)
 {
+	Raven_Bot* pBot = GetBotAtPosition(POINTStoVector(p));
+
   if (m_pSelectedBot && m_pSelectedBot->isPossessed())
   {
     m_pSelectedBot->FireWeapon(POINTStoVector(p));
+  }
+  else {
+	  pBot->GetBrain()->AddGoal_AttackTarget();
   }
 }
 
