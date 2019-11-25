@@ -72,5 +72,8 @@ double Raven_TargetingSystem::GetTimeTargetHasBeenOutOfView()const
 
 Raven_Bot* Raven_TargetingSystem::GetTarget()const
 {
-	return m_pCurrentTarget;
+	if (m_pCurrentTarget->GetIsTarget() == true) {
+		return m_pCurrentTarget;
+	}
+	return 0;
 }

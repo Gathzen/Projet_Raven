@@ -1,3 +1,1 @@
-﻿  Raven_TargetingSystem.cpp
-C:\Users\Marylène\Documents\GitHub\Projet_Raven\Buckland_Chapter7 to 10_Raven\Raven_TargetingSystem.cpp(78): warning C4715:  'Raven_TargetingSystem::GetTarget' : les chemins de contrôle ne retournent pas tous une valeur
-  Raven.vcxproj -> C:\Users\Marylène\Documents\GitHub\Projet_Raven\Buckland_Chapter7 to 10_Raven\.\Release\Raven.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.Targets(114,3): error MSB4024: Impossible de charger le fichier projet importé "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets". '', valeur hexadécimale 0x15, est un caractère non valide. Ligne 933, position 8.
