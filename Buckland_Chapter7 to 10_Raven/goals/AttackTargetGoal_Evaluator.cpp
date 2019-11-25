@@ -18,6 +18,11 @@
 double AttackTargetGoal_Evaluator::CalculateDesirability(Raven_Bot* pBot)
 {
   double Desirability = 0.0;
+  /*if (pBot->GetIsTarget() == true) {
+	  Desirability = 0.9;
+	  debug_con << Desirability << " " << pBot->ID() << "";
+	  return Desirability;
+  }*/
 
   //only do the calculation if there is a target present
   if (pBot->GetTargetSys()->isTargetPresent()) 
@@ -31,7 +36,7 @@ double AttackTargetGoal_Evaluator::CalculateDesirability(Raven_Bot* pBot)
      //bias the value according to the personality of the bot
      Desirability *= m_dCharacterBias;
   }
-    
+	  
   return Desirability;
 }
 

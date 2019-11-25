@@ -81,6 +81,8 @@ Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
                                         script->GetDouble("Bot_AimPersistance"));
   m_haveEquipe = false;
 
+  m_isTarget = false;
+
   m_pSensoryMem = new Raven_SensoryMemory(this, script->GetDouble("Bot_MemorySpan"));
 }
 
@@ -362,8 +364,10 @@ void Raven_Bot::TakePossession()
 void Raven_Bot::SetEquipe(bool haveEquipe)
 {
 	m_haveEquipe = haveEquipe;
+}
 
-	debug_con <<"ADDING BOT TO THE TEAM"<<"";
+void Raven_Bot::SetAsTarget(bool target) {
+	m_isTarget = target;
 }
 
 //------------------------------- Exorcise ------------------------------------

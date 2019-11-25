@@ -26,6 +26,7 @@
 #include "goals/Goal_Think.h"
 #include "goals/Raven_Goal_Types.h"
 
+#include "Debug/DebugConsole.h"
 
 
 //uncomment to write object creation/deletion to debug console
@@ -431,25 +432,25 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
 {
   Raven_Bot* pBot = GetBotAtPosition(POINTStoVector(p));
 
-  //if there is no selected bot just return;
   if (!pBot && m_pSelectedBot == NULL) return;
 
   //if the cursor is over a different bot to the existing selection,
   //change selection
   if (pBot && pBot != m_pSelectedBot)
   { 
-	  m_pSelectedBot = pBot;
-
 	  if (m_pAgentLeader != NULL) {
-		  if (m_pSelectedBot != m_pAgentLeader) {
-			  if (m_pSelectedBot->GetEquipe() == false) {
-
-			  }
-				m_pSelectedBot->SetEquipe(true);
+		  if (pBot != m_pAgentLeader) {
+			  if (pBot->GetEquipe() == false) {
+				  if (pBot->GetIsTarget() == false) {
+					  pBot->SetEquipe(true);
+					  tab_equipe.push_back(pBot);
+					  debug_con << "ADDING BOT " << pBot->ID() << " TO THE TEAM" << "";
+				  }
+			  }	
 		  }
 	  }
-
-    return;
+	  m_pSelectedBot = pBot;
+	  return;
   }
 
   //if the user clicks on a selected bot twice it becomes possessed(under
@@ -458,9 +459,12 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
   {
 	  if (m_pAgentLeader == NULL) {
 		  m_pSelectedBot->TakePossession();
+
 		  m_pAgentLeader = m_pSelectedBot;
 		  if (m_pAgentLeader->GetEquipe() == false) {
+			  debug_con << "ADDING LEADER "<< m_pAgentLeader->ID() << " TO THE TEAM" <<"";
 			  m_pAgentLeader->SetEquipe(true);
+			  tab_equipe.push_back(m_pAgentLeader);
 		  }
 		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
 	  }
@@ -491,14 +495,22 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
 void Raven_Game::ClickLeftMouseButton(POINTS p)
 {
 	Raven_Bot* pBot = GetBotAtPosition(POINTStoVector(p));
+	if (pBot && pBot != NULL) {
+		if (m_pAgentLeader != NULL) {
+			if (pBot->GetIsTarget() == false) {
+				if (pBot->GetEquipe() == false) {
+					pBot->SetAsTarget(true);
+					debug_con << "SET " << pBot->ID() << " AS TARGET" << "";
+				}
+			}
+		}
+	}
+	if (m_pSelectedBot && m_pSelectedBot->isPossessed())
+	{
+		m_pSelectedBot->FireWeapon(POINTStoVector(p));
 
-  if (m_pSelectedBot && m_pSelectedBot->isPossessed())
-  {
-    m_pSelectedBot->FireWeapon(POINTStoVector(p));
-  }
-  else {
-	  pBot->GetBrain()->AddGoal_AttackTarget();
-  }
+		return;
+	}
 }
 
 //------------------------ GetPlayerInput -------------------------------------

@@ -109,6 +109,8 @@ private:
 
   bool								m_haveEquipe;
 
+  bool								m_isTarget;
+
   //a vertex buffer containing the bot's geometry
   std::vector<Vector2D>              m_vecBotVB;
   //the buffer for the transformed vertices
@@ -167,6 +169,10 @@ public:
 
   void			SetEquipe(bool haveEquipe);
   bool			GetEquipe() { return m_haveEquipe; }
+
+  bool			GetIsTarget() { return m_isTarget; }
+
+  void			SetAsTarget(bool target);
 
   //returns a value indicating the time in seconds it will take the bot
   //to reach the given position at its current speed.

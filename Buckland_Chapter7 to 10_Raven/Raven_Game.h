@@ -17,6 +17,7 @@
 #include <vector>
 #include <string>
 #include <list>
+#include <iostream>
 
 #include "graph/SparseGraph.h"
 #include "Raven_ObjectEnumerations.h"
@@ -63,6 +64,9 @@ private:
 
   //if true a bot is removed from the game
   bool                             m_bRemoveABot;
+
+  
+  std::vector<Raven_Bot*> tab_equipe;
 
   //when a bot is killed a "grave" is displayed for a few seconds. This
   //class manages the graves

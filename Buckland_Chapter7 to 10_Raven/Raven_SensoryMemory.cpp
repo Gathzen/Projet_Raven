@@ -168,12 +168,10 @@ Raven_SensoryMemory::GetListOfRecentlySensedOpponents()const
 bool Raven_SensoryMemory::isOpponentShootable(Raven_Bot* pOpponent)const
 {
   MemoryMap::const_iterator it = m_MemoryMap.find(pOpponent);
- 
-  if (it != m_MemoryMap.end())
-  {
-    return it->second.bShootable;
-  }
-
+	if (it != m_MemoryMap.end())
+	{
+		return it->second.bShootable;
+	}
   return false;
 }
 
@@ -189,7 +187,6 @@ bool  Raven_SensoryMemory::isOpponentWithinFOV(Raven_Bot* pOpponent)const
   {
     return it->second.bWithinFOV;
   }
-
   return false;
 }
 

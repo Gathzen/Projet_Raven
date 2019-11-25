@@ -51,7 +51,7 @@ bool Raven_TargetingSystem::isTargetWithinFOV()const
 
 bool Raven_TargetingSystem::isTargetShootable()const
 {
-  return m_pOwner->GetSensoryMem()->isOpponentShootable(m_pCurrentTarget);
+	return m_pOwner->GetSensoryMem()->isOpponentShootable(m_pCurrentTarget);	
 }
 
 Vector2D Raven_TargetingSystem::GetLastRecordedPosition()const
@@ -67,4 +67,10 @@ double Raven_TargetingSystem::GetTimeTargetHasBeenVisible()const
 double Raven_TargetingSystem::GetTimeTargetHasBeenOutOfView()const
 {
   return m_pOwner->GetSensoryMem()->GetTimeOpponentHasBeenOutOfView(m_pCurrentTarget);
+}
+
+
+Raven_Bot* Raven_TargetingSystem::GetTarget()const
+{
+	return m_pCurrentTarget;
 }
